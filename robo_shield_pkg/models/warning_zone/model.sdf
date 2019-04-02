@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+  <model name="Color Tutorial Model">
+    <static>true</static>
+   
+   <link name="darngerous_link">
+   <!-- 
+      <collision name="zone_collision">
+        <geometry>
+          <cylinder>
+              <radius>1</radius>
+              <length>.001</length>
+            </cylinder>
+        </geometry>
+      </collision>
+    -->
+      <visual name="wheel1_visual">
+        <pose>0 0 0.01 0 0 0</pose>
+        <geometry>
+          <cylinder>
+              <radius>1</radius>
+              <length>.001</length>
+            </cylinder>
+        </geometry>
+        <material> <!-- Wheel material -->
+          <ambient>0.1 0.1 0.1 1</ambient>
+          <diffuse>1 0 0 1</diffuse>
+          <specular>0 0 0 0</specular>
+          <emissive>0 0 0 1</emissive>
+        </material> <!-- End wheel material -->
+      </visual>
+    </link>
+    
+       <link name="darngerous_link">
+   <!-- 
+      <collision name="zone_collision">
+        <geometry>
+          <cylinder>
+              <radius>2</radius>
+              <length>.005</length>
+            </cylinder>
+        </geometry>
+      </collision>
+    -->
+      <visual name="wheel1_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+              <radius>1.5</radius>
+              <length>.001</length>
+            </cylinder>
+        </geometry>
+        <material> <!-- Wheel material -->
+          <ambient>0.1 0.1 0.1 1</ambient>
+          <diffuse>1 1 0.5 1</diffuse>
+          <specular>0 0 0 0</specular>
+          <emissive>0 0 0 1</emissive>
+        </material> <!-- End wheel material -->
+      </visual>
+    </link>
+    
+    
+    </model>
+</sdf>

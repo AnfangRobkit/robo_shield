@@ -1,0 +1,32 @@
+<?xml version='1.0'?>
+
+<robot name="human_urdf" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <link name="body">
+    <collision>
+      <origin xyz="0 0 1" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.6 0.6 2"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+          <mesh filename="/home/huang_uyhsp/catkin_ws/src/robo_shield_pkg/meshes/walking.dae"/>
+      </geometry>
+    </visual>
+    
+    <inertial>
+    <!--origin xyz = "0 0 1" rpy = "0 0 0"/-->
+    <mass value = "80"/>
+    <inertia
+            ixx = "27.82" ixy = "0.0" ixz = "0.0"
+            iyy = "24.88" iyz = "0.0"
+            izz = "4.57"/>
+    </inertial>   
+    
+    
+  </link>
+  
+</robot>

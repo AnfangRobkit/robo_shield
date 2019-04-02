@@ -1,0 +1,96 @@
+<robot
+  name="side_table">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0 0 -0.06"
+        rpy="0 0 0" />
+      <mass
+        value="72.459" />
+      <inertia
+        ixx="0"
+        ixy="0"
+        ixz="0"
+        iyy="0"
+        iyz="0"
+        izz="0" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://side_table/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.89804 0.89804 0.89804 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://side_table/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="Legs">
+    <inertial>
+      <origin
+        xyz="-0.125 -0.022071 -0.3481"
+        rpy="0 0 0" />
+      <mass
+        value="39.378" />
+      <inertia
+        ixx="4.8347"
+        ixy="1.8474E-05"
+        ixz="-0.0025132"
+        iyy="5.0464"
+        iyz="-0.0018917"
+        izz="0.94847" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://side_table/meshes/Legs.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.78039 0.76078 0.74118 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://side_table/meshes/Legs.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Leg_Surface"
+    type="fixed">
+    <origin
+      xyz="0.125 0.47 -0.35"
+      rpy="3.1416 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="Legs" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+</robot> 

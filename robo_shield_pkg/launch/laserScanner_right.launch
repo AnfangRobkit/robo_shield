@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  
+  <param name="laser_right_description" command="$(find xacro)/xacro.py '$(find robo_shield_pkg)/urdf/hokuyo_right.xacro'"/> 
+  
+  <node name="laser_right_spawn" pkg="gazebo_ros" type="spawn_model" output="screen"
+   args="-urdf -param laser_right_description -model laser_right -x -0.38 -y -1.2 -z 0.1 -Y -2.356 " />
+
+  
+  
+</launch>

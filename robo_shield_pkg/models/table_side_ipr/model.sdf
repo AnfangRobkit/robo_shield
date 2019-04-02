@@ -1,0 +1,111 @@
+<?xml version='1.0'?>
+<sdf version='1.4'>
+  <model name="table_ipr">
+
+    <include>
+      <uri>model://table_side_top</uri>
+      <pose>0 0 0 0 0 0</pose>
+      
+    </include>
+
+
+    <include>
+      <uri>model://table_leg</uri>
+	<name>leg_1</name>
+      <pose>0.245 0.470 0 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://table_leg</uri>
+	<name>leg_2</name>
+      <pose>-0.245 -0.470 0 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://table_leg</uri>
+	<name>leg_3</name>
+      <pose>-0.245 0.470 0 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://table_leg</uri>
+	<name>leg_4</name>
+      <pose>0.245 -0.470 0 0 0 0</pose>
+    </include>
+
+    <joint name="table_glue" type="fixed">
+	<child>table_top::link</child>
+	<parent>leg_1::chassis1</parent>
+    </joint>
+
+    <joint name="table_glue2" type="fixed">
+	<child>table_top::link</child>
+	<parent>leg_2::chassis1</parent>
+    </joint>
+
+    <joint name="table_glue3" type="fixed">
+	<child>table_top::link</child>
+	<parent>leg_3::chassis1</parent>
+    </joint>
+
+    <joint name="table_glue4" type="fixed">
+	<child>table_top::link</child>
+	<parent>leg_4::chassis1</parent>
+    </joint>
+
+
+
+
+
+    <include>
+      <uri>model://table_side_bar_small</uri>
+	<name>bar_1</name>
+      <pose>0 0.470 0.860 0 1.57 0</pose>
+    </include>
+    
+    <include>
+      <uri>model://table_side_bar_small</uri>
+	<name>bar_2</name>
+      <pose>0 0.470  0.360 0 1.57 0</pose>
+    </include>
+	
+    <include>
+      <uri>model://table_side_bar_small</uri>
+	<name>bar_3</name>
+      <pose>0 -0.470 0.860 0 1.57 0</pose>
+    </include>
+
+    <include>
+      <uri>model://table_side_bar_small</uri>
+	<name>bar_4</name>
+      <pose>0 -0.470  0.360 0 1.57 0</pose>
+    </include>
+
+   
+   <include>
+      <uri>model://table_side_bar_large</uri>
+      <name>bar_5</name>
+      <pose>0.245 0 0.360 1.57 0 0</pose>
+   </include>
+
+   <include>
+      <uri>model://table_side_bar_large</uri>
+      <name>bar_6</name>
+      <pose>-0.245 0 0.360 1.57 0 0</pose>
+   </include>
+
+   <include>
+      <uri>model://table_side_bar_large</uri>
+      <name>bar_7</name>
+      <pose>0.245 0 0.860 1.57 0 0</pose>
+   </include>
+
+   <include>
+      <uri>model://table_side_bar_large</uri>
+      <name>bar_8</name>
+      <pose>-0.245 0 0.860 1.57 0 0</pose>
+   </include>
+
+
+  </model>
+</sdf>
