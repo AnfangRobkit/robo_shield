@@ -143,6 +143,9 @@ add_executable(scanners src/lasers_fusion.cpp)
 target_link_libraries(scanners ${catkin_LIBRARIES})
 add_dependencies(scanners ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
+add_executable(static src/static_laser.cpp)
+target_link_libraries(static ${catkin_LIBRARIES})
+add_dependencies(static ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
