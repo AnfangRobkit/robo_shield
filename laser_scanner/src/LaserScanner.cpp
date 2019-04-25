@@ -21,7 +21,7 @@ void scanValues(const sensor_msgs::LaserScan::ConstPtr& scan)
     float safe_d = 2;
     float warn_d = 1.5;
     float distance_now;
-    
+    //cout<<range[100]<<endl;
     for(int i = 1; i<=Samples;i++)
     {   
         diff[i] = range[i] - old_range[i];
@@ -36,13 +36,11 @@ void scanValues(const sensor_msgs::LaserScan::ConstPtr& scan)
        
         distance_now = sqrt(x*x+y*y); 
         
-       /* if(distance_now>safe_d)  {
+        if(distance_now>safe_d)  {
                 ROS_INFO("Safety!");
               
             }
-           else */
-               
-        if(distance_now>warn_d) {
+           else  if(distance_now>warn_d&&distance_now<safe_d) {
           
                 ROS_INFO("Critical!");                 
             }
@@ -61,8 +59,8 @@ int main(int argc, char **argv)
   ros::init(argc, argv, "scanner");
   ros::NodeHandle n;
   ros::Subscriber sub;
-  sub = n.subscribe("/mybot/laser/scan", 50, scanValues);
-  
+  //sub = n.subscribe("/mybot/laser/scan", 50, scanValues);
+  sub = n.subscribe("/sick_safetyscanners/scan", 50, scanValues);
   
   
   ros::spin();
