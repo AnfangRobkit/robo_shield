@@ -19,8 +19,8 @@ void scanValues(const sensor_msgs::LaserScan::ConstPtr& scan)
 
     range = scan->ranges;
     double angle,x,y;
-    float safe_d = 2;
-    float warn_d = 1.5;
+    float safe_d = 0.5;
+    float warn_d = 0.1;
     float distance_now;
     //cout<<range[100]<<endl;
     for(int i = 1; i<=Samples;i++)
