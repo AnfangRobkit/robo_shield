@@ -157,6 +157,11 @@ add_library(${PROJECT_NAME}_core
   src/datastructure/TypeCode.cpp
 )
 
+
+ add_executable(signal src/signal.cpp)
+ target_link_libraries(signal ${catkin_LIBRARIES})
+ add_dependencies(signal ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
 ## Declare cpp executables
 add_executable(${PROJECT_NAME}_node
   nodes/${PROJECT_NAME}_node.cpp
