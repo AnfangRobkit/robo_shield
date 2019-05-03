@@ -9,8 +9,7 @@
 using namespace std;
 int Samples = 720;
 #define PI 3.1415926
-bool b=false;
-unsigned char c = (unsigned char)b;
+
 // The Sensor angle range is from -2/3 PI to 2/3PI, and the angle increment is  0.00672220578417 Deg
 //std::vector<float> old_range = std::vector<float>(Samples, 0);
 //std::vector<float> range = std::vector<float>(Samples, 0); 
@@ -21,8 +20,8 @@ void scanValues(const sick_safetyscanners::OutputPathsMsg::ConstPtr& output_path
     /*The Laser has 720 Samples */
     status_now = output_paths->status;
     //cout<<status_now[1]<<endl;
-    if(status_now[0]==b) cout<<"Dangours"<<endl;
-    else if(status_now[1]==b) cout<<"Critial"<<endl;
+    if(status_now[0]==false) cout<<"Dangours"<<endl;
+    else if(status_now[1]==false) cout<<"Critial"<<endl;
     else cout<<"Safety"<<endl;
 }
 
