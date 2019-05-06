@@ -18,7 +18,7 @@
            <pose> 0 0 0 0 0 0</pose>
            <geometry>
                <box>
-                   <size> 0.86 2.2 0.01</size>
+                   <size> 0.88 2.3 0.01</size>
                 </box>
             </geometry>
         <material> <!-- Red material -->
@@ -28,12 +28,12 @@
           <emissive>0 0 0 1</emissive>
         </material> <!-- End Red material -->
       </visual>
-    <!--Here we set the warning zone to be d1=0.2m so the y=-1.1-0.2/2=-1.2      -->
+    <!--Here we set the warning zone to be d1=0.2m so the y=-1.15-0.2/2=-1.25      -->
      <visual name ="side_rectangele">
-           <pose> 0 -1.2 0 0 0 0</pose>
+           <pose> 0 -1.25 0 0 0 0</pose>
            <geometry>
                <box>
-                   <size> 0.86 0.2 0.01</size>
+                   <size> 0.88 0.2 0.01</size>
                 </box>
             </geometry>
         <material> <!-- Red material -->
@@ -44,12 +44,12 @@
         </material> <!-- End Red material -->
       </visual>
        
-          <!--Here we set the warning zone to be d1=0.2m so the x=0.43+0.2/2=0.53      -->
+          <!--Here we set the warning zone to be d1=0.2m so the x=0.44+0.2/2=0.54      -->
      <visual name ="front_rectangele">
-           <pose> 0.53 0 0 0 0 0</pose>
+           <pose> 0.54 0 0 0 0 0</pose>
            <geometry>
                <box>
-                   <size> 0.2 2.2 .01</size>
+                   <size> 0.2 2.3 .01</size>
                 </box>
             </geometry>
         <material> <!-- Red material -->
@@ -61,7 +61,7 @@
       </visual>
     
       <visual name="corner_circle">
-        <pose>0.43 -1.1 0 0 0 0</pose>
+        <pose>0.44 -1.15 0 0 0 0</pose>
         <geometry>
           <cylinder>
               <radius>0.2</radius>
@@ -91,10 +91,10 @@
     -->
 <!--d2=0.2             -->
            <visual name ="side_rectangele">
-           <pose> 0 -1.4 0 0 0 0</pose>
+           <pose> 0 -1.45 0 0 0 0</pose>
            <geometry>
                <box>
-                   <size> 0.86 0.2 0.001</size>
+                   <size> 0.88 0.2 0.001</size>
                 </box>
             </geometry>
             <material> <!-- Yellow material -->
@@ -105,12 +105,12 @@
             </material> <!-- End wheel material -->
       </visual>
        
-          <!--Here we set the warning zone to be d1=0.2m so the x=0.43+0.2/2+0.2=0.73      -->
+          <!--Here we set the warning zone to be d1=0.2m so the x=0.44+0.2/2+0.2=0.74      -->
      <visual name ="front_rectangele">
-           <pose> 0.73 0 0 0 0 0</pose>
+           <pose> 0.74 0 0 0 0 0</pose>
            <geometry>
                <box>
-                   <size> 0.2 2.2 0.001</size>
+                   <size> 0.2 2.3 0.001</size>
                 </box>
             </geometry>
             <material> <!-- Yellow material -->
@@ -122,7 +122,7 @@
       </visual>
     
       <visual name="corner_circle">
-        <pose>0.43 -1.1 0 0 0 0</pose>
+        <pose>0.44 -1.15 0 0 0 0</pose>
         <geometry>
           <cylinder>
               <radius>0.4</radius>
