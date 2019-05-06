@@ -28,7 +28,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="1.57 0 1.57"/>
       <geometry>
-        <mesh filename="/home/huang_uyhsp/catkin_ws/src/robo_shield_pkg/meshes/hokuyo.dae"/>
+        <mesh filename="$(find robo_shield_pkg)/meshes/hokuyo.dae"/>
       </geometry>
     </visual>
 
