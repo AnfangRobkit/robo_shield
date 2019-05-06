@@ -14,24 +14,71 @@
         </geometry>
       </collision>
     -->
-      <visual name="wheel1_visual">
-        <pose>0 0 0.01 0 0 0</pose>
-        <geometry>
-          <cylinder>
-              <radius>1</radius>
-              <length>.001</length>
-            </cylinder>
-        </geometry>
-        <material> <!-- Wheel material -->
+       <visual name ="main_rectangele">
+           <pose> 0 0 0 0 0 0</pose>
+           <geometry>
+               <box>
+                   <size> 0.86 2.2 0.01</size>
+                </box>
+            </geometry>
+        <material> <!-- Red material -->
           <ambient>0.1 0.1 0.1 1</ambient>
           <diffuse>1 0 0 1</diffuse>
           <specular>0 0 0 0</specular>
           <emissive>0 0 0 1</emissive>
-        </material> <!-- End wheel material -->
+        </material> <!-- End Red material -->
       </visual>
+    <!--Here we set the warning zone to be d1=0.2m so the y=-1.1-0.2/2=-1.2      -->
+     <visual name ="side_rectangele">
+           <pose> 0 -1.2 0 0 0 0</pose>
+           <geometry>
+               <box>
+                   <size> 0.86 0.2 0.01</size>
+                </box>
+            </geometry>
+        <material> <!-- Red material -->
+          <ambient>0.1 0.1 0.1 1</ambient>
+          <diffuse>1 0 0 1</diffuse>
+          <specular>0 0 0 0</specular>
+          <emissive>0 0 0 1</emissive>
+        </material> <!-- End Red material -->
+      </visual>
+       
+          <!--Here we set the warning zone to be d1=0.2m so the x=0.43+0.2/2=0.53      -->
+     <visual name ="front_rectangele">
+           <pose> 0.53 0 0 0 0 0</pose>
+           <geometry>
+               <box>
+                   <size> 0.2 2.2 .01</size>
+                </box>
+            </geometry>
+        <material> <!-- Red material -->
+          <ambient>0.1 0.1 0.1 1</ambient>
+          <diffuse>1 0 0 1</diffuse>
+          <specular>0 0 0 0</specular>
+          <emissive>0 0 0 1</emissive>
+        </material> <!-- End Red material -->
+      </visual>
+    
+      <visual name="corner_circle">
+        <pose>0.43 -1.1 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+              <radius>0.2</radius>
+              <length>0.01</length>
+            </cylinder>
+        </geometry>
+            <material> <!-- Red material -->
+          <ambient>0.1 0.1 0.1 1</ambient>
+          <diffuse>1 0 0 1</diffuse>
+          <specular>0 0 0 0</specular>
+          <emissive>0 0 0 1</emissive>
+        </material> <!-- End Red material -->
+      </visual>
+      
     </link>
     
-       <link name="darngerous_link">
+       <link name="warn_link">
    <!-- 
       <collision name="zone_collision">
         <geometry>
@@ -42,21 +89,54 @@
         </geometry>
       </collision>
     -->
-      <visual name="wheel1_visual">
-        <pose>0 0 0 0 0 0</pose>
+<!--d2=0.2             -->
+           <visual name ="side_rectangele">
+           <pose> 0 -1.4 0 0 0 0</pose>
+           <geometry>
+               <box>
+                   <size> 0.86 0.2 0.001</size>
+                </box>
+            </geometry>
+            <material> <!-- Yellow material -->
+                <ambient>0.1 0.1 0.1 1</ambient>
+                <diffuse>1 1 0.5 1</diffuse>
+                <specular>0 0 0 0</specular>
+                <emissive>0 0 0 1</emissive>
+            </material> <!-- End wheel material -->
+      </visual>
+       
+          <!--Here we set the warning zone to be d1=0.2m so the x=0.43+0.2/2+0.2=0.73      -->
+     <visual name ="front_rectangele">
+           <pose> 0.73 0 0 0 0 0</pose>
+           <geometry>
+               <box>
+                   <size> 0.2 2.2 0.001</size>
+                </box>
+            </geometry>
+            <material> <!-- Yellow material -->
+                <ambient>0.1 0.1 0.1 1</ambient>
+                <diffuse>1 1 0.5 1</diffuse>
+                <specular>0 0 0 0</specular>
+                <emissive>0 0 0 1</emissive>
+            </material> <!-- End wheel material -->
+      </visual>
+    
+      <visual name="corner_circle">
+        <pose>0.43 -1.1 0 0 0 0</pose>
         <geometry>
           <cylinder>
-              <radius>1.5</radius>
-              <length>.001</length>
+              <radius>0.4</radius>
+              <length>0.0001</length>
             </cylinder>
         </geometry>
-        <material> <!-- Wheel material -->
-          <ambient>0.1 0.1 0.1 1</ambient>
-          <diffuse>1 1 0.5 1</diffuse>
-          <specular>0 0 0 0</specular>
-          <emissive>0 0 0 1</emissive>
-        </material> <!-- End wheel material -->
+            <material> <!-- Yellow material -->
+                <ambient>0.1 0.1 0.1 1</ambient>
+                <diffuse>1 1 0.5 1</diffuse>
+                <specular>0 0 0 0</specular>
+                <emissive>0 0 0 1</emissive>
+            </material> <!-- End wheel material -->
       </visual>
+
     </link>
     
     
