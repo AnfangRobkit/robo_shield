@@ -14,65 +14,65 @@
         </geometry>
       </collision>
     -->
-       <visual name ="main_rectangele">
+    <visual name ="main_rectangele">
            <pose> 0 0 0 0 0 0</pose>
            <geometry>
                <box>
-                   <size> 0.88 2.3 0.01</size>
+                   <size> 1 2.27 0.015</size>
                 </box>
             </geometry>
-        <material> <!-- Red material -->
-          <ambient>0.1 0.1 0.1 1</ambient>
-          <diffuse>1 0 0 1</diffuse>
-          <specular>0 0 0 0</specular>
-          <emissive>0 0 0 1</emissive>
-        </material> <!-- End Red material -->
+        <material> 
+            <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Grey</name>
+          </script>
+        </material> 
       </visual>
-    <!--Here we set the warning zone to be d1=0.2m so the y=-1.15-0.2/2=-1.25      -->
+    <!--Here we set the warning zone to be d1=1.5m so the y=-1.135-1.5/2=-1.885      -->
      <visual name ="side_rectangele">
-           <pose> 0 -1.25 0 0 0 0</pose>
+           <pose> 0 -1.885 0 0 0 0</pose>
            <geometry>
                <box>
-                   <size> 0.88 0.2 0.01</size>
+                   <size> 1 1.5 0.01</size>
                 </box>
             </geometry>
         <material> <!-- Red material -->
-          <ambient>0.1 0.1 0.1 1</ambient>
-          <diffuse>1 0 0 1</diffuse>
-          <specular>0 0 0 0</specular>
-          <emissive>0 0 0 1</emissive>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Red</name>
+          </script>
         </material> <!-- End Red material -->
       </visual>
        
-          <!--Here we set the warning zone to be d1=0.2m so the x=0.44+0.2/2=0.54      -->
+          <!--Here we set the warning zone to be d1=1.5m so the x=0.5+1.5/2=1.25      -->
      <visual name ="front_rectangele">
-           <pose> 0.54 0 0 0 0 0</pose>
+           <pose> 1.25 0 0 0 0 0</pose>
            <geometry>
                <box>
-                   <size> 0.2 2.3 .01</size>
+                   <size> 1.5 2.27 .01</size>
                 </box>
             </geometry>
         <material> <!-- Red material -->
-          <ambient>0.1 0.1 0.1 1</ambient>
-          <diffuse>1 0 0 1</diffuse>
-          <specular>0 0 0 0</specular>
-          <emissive>0 0 0 1</emissive>
+       <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Red</name>
+          </script>
         </material> <!-- End Red material -->
       </visual>
     
       <visual name="corner_circle">
-        <pose>0.44 -1.15 0 0 0 0</pose>
+        <pose>0.5 -1.135 0 0 0 0</pose>
         <geometry>
           <cylinder>
-              <radius>0.2</radius>
+              <radius>1.5</radius>
               <length>0.01</length>
             </cylinder>
         </geometry>
             <material> <!-- Red material -->
-          <ambient>0.1 0.1 0.1 1</ambient>
-          <diffuse>1 0 0 1</diffuse>
-          <specular>0 0 0 0</specular>
-          <emissive>0 0 0 1</emissive>
+       <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Red</name>
+          </script>
         </material> <!-- End Red material -->
       </visual>
       
@@ -89,54 +89,86 @@
         </geometry>
       </collision>
     -->
-<!--d2=0.2             -->
+<!--d2=2m             -->
            <visual name ="side_rectangele">
-           <pose> 0 -1.45 0 0 0 0</pose>
+           <pose> 0 -3.635 0 0 0 0</pose>
            <geometry>
                <box>
-                   <size> 0.88 0.2 0.001</size>
+                   <size> 1 2 0.001</size>
                 </box>
             </geometry>
             <material> <!-- Yellow material -->
-                <ambient>0.1 0.1 0.1 1</ambient>
-                <diffuse>1 1 0.5 1</diffuse>
-                <specular>0 0 0 0</specular>
-                <emissive>0 0 0 1</emissive>
+                   <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Yellow</name>
+          </script>
             </material> <!-- End wheel material -->
       </visual>
        
-          <!--Here we set the warning zone to be d1=0.2m so the x=0.44+0.2/2+0.2=0.74      -->
+          <!--Here we set the warning zone to be d2=2m so the x=2+2/2      -->
      <visual name ="front_rectangele">
-           <pose> 0.74 0 0 0 0 0</pose>
+           <pose> 3 0 0 0 0 0</pose>
            <geometry>
                <box>
-                   <size> 0.2 2.3 0.001</size>
+                   <size> 2 2.27 0.001</size>
                 </box>
             </geometry>
             <material> <!-- Yellow material -->
-                <ambient>0.1 0.1 0.1 1</ambient>
-                <diffuse>1 1 0.5 1</diffuse>
-                <specular>0 0 0 0</specular>
-                <emissive>0 0 0 1</emissive>
+        <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Yellow</name>
+          </script>
             </material> <!-- End wheel material -->
       </visual>
     
       <visual name="corner_circle">
-        <pose>0.44 -1.15 0 0 0 0</pose>
+        <pose>0.5 -1.135 0 0 0 0</pose>
         <geometry>
           <cylinder>
-              <radius>0.4</radius>
-              <length>0.0001</length>
+              <radius>3.5</radius>
+              <length>0.001</length>
             </cylinder>
         </geometry>
             <material> <!-- Yellow material -->
-                <ambient>0.1 0.1 0.1 1</ambient>
-                <diffuse>1 1 0.5 1</diffuse>
-                <specular>0 0 0 0</specular>
-                <emissive>0 0 0 1</emissive>
+       <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Yellow</name>
+          </script>
             </material> <!-- End wheel material -->
       </visual>
-
+      </link>
+      <link name="patch_link1">
+           
+           <visual name ="patch_rectangele1">
+           <pose> 0.5 2.5 0 0 0 0</pose>
+           <geometry>
+               <box>
+                   <size> 8 2.73 0.015</size>
+                </box>
+            </geometry>
+            <material> <!-- Yellow material -->
+        <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Grey</name>
+          </script>
+            </material> <!-- End wheel material -->
+      </visual>
+    </link>
+        <link name="patch_link2">
+        <visual name ="patch_rectangele2">
+           <pose> -3 0 0 0 0 0</pose>
+           <geometry>
+               <box>
+                   <size> 5 9 0.015</size>
+                </box>
+            </geometry>
+            <material> <!-- Yellow material -->
+        <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Grey</name>
+          </script>
+            </material> <!-- End wheel material -->
+      </visual>
     </link>
     
     
