@@ -1,7 +1,7 @@
 <launch>
   <arg name="sensor_ip" default="141.3.80.121" />
   <arg name="sensor_tcp_port" default="2122" />
-  <arg name="host_ip" default="141.3.81.163" />
+  <arg name="host_ip" default="141.3.81.192" />
   <arg name="host_udp_port" default="0" />
 
   <!-- Launch Sick SickSafetyscanners Ros Driver Node -->
@@ -15,4 +15,3 @@
 
   <!-- node name="rqt_reconfigure" pkg="rqt_reconfigure" type="rqt_reconfigure" /-->
 </launch>
-

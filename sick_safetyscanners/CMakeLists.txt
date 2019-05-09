@@ -8,6 +8,7 @@ project(sick_safetyscanners)
 add_definitions(-std=c++11 -Wall)
 #add_definitions(-std=c++11 -Wall -Werror)
 
+
 ## Find catkin macros and libraries
 find_package(catkin REQUIRED
   COMPONENTS
@@ -16,6 +17,8 @@ find_package(catkin REQUIRED
     roscpp
     sensor_msgs
     std_msgs
+    cv_bridge
+    image_transport
 )
 
 ## Find system libraries
@@ -161,6 +164,10 @@ add_library(${PROJECT_NAME}_core
  add_executable(signal src/signal.cpp)
  target_link_libraries(signal ${catkin_LIBRARIES})
  add_dependencies(signal ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+ 
+  add_executable(signal_image src/signal_image.cpp)
+  target_link_libraries(signal_image ${catkin_LIBRARIES})
+  add_dependencies(signal_image ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Declare cpp executables
 add_executable(${PROJECT_NAME}_node
