@@ -78,7 +78,7 @@
       
     </link>
     
-       <link name="warn_link">
+    
    <!-- 
       <collision name="zone_collision">
         <geometry>
@@ -90,6 +90,7 @@
       </collision>
     -->
 <!--d2=2m             -->
+       <link name="warn_link">
            <visual name ="side_rectangele">
            <pose> 0 -3.635 0 0 0 0</pose>
            <geometry>
@@ -140,10 +141,10 @@
       <link name="patch_link1">
            
            <visual name ="patch_rectangele1">
-           <pose> 0.5 2.5 0 0 0 0</pose>
+           <pose> 0.5 4 0 0 0 0</pose>
            <geometry>
                <box>
-                   <size> 8 2.73 0.015</size>
+                   <size> 12 5.73 0.015</size>
                 </box>
             </geometry>
             <material> <!-- Yellow material -->
@@ -159,7 +160,7 @@
            <pose> -3 0 0 0 0 0</pose>
            <geometry>
                <box>
-                   <size> 5 9 0.015</size>
+                   <size> 5 14 0.015</size>
                 </box>
             </geometry>
             <material> <!-- Yellow material -->
@@ -170,7 +171,23 @@
             </material> <!-- End wheel material -->
       </visual>
     </link>
-    
+    <link name="safe_link">
+    <visual name="corner_circle">
+        <pose>0.5 -1.135 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+              <radius>5.5</radius>
+              <length>0.0001</length>
+            </cylinder>
+        </geometry>
+            <material> <!-- Yellow material -->
+       <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Green</name>
+          </script>
+            </material> <!-- End wheel material -->
+      </visual>
+    </link>
     
     </model>
 </sdf>
