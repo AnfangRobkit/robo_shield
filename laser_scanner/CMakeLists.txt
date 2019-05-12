@@ -13,7 +13,11 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   sensor_msgs 
   tf
+  cv_bridge
+  image_transport
 )
+find_package(OpenCV REQUIRED)
+find_package(image_transport REQUIRED)
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -120,6 +124,8 @@ catkin_package(
 include_directories(
 # include
   ${catkin_INCLUDE_DIRS}
+  include/
+  ${OpenCV_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
@@ -136,7 +142,7 @@ include_directories(
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
 add_executable(scanner src/LaserScanner.cpp)
-target_link_libraries(scanner ${catkin_LIBRARIES})
+target_link_libraries(scanner ${catkin_LIBRARIES} ${OpenCV_LIBS})
 add_dependencies(scanner ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 add_executable(scanners src/lasers_fusion.cpp)
@@ -146,6 +152,10 @@ add_dependencies(scanners ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_
 add_executable(static src/static_laser.cpp)
 target_link_libraries(static ${catkin_LIBRARIES})
 add_dependencies(static ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
+#  add_executable(signal src/signal.cpp)
+#  target_link_libraries(signal ${catkin_LIBRARIES})
+#  add_dependencies(signal ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
