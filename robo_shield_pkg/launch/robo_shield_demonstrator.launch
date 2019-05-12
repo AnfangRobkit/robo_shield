@@ -30,8 +30,8 @@
   <node name="move_human" pkg="robo_shield_pkg" type="move_human"/>
   <node name="move_arm" pkg="robo_shield_pkg" type="move_arm"/>-->
   <!--<include file="$(find robo_shield_pkg)/launch/laserScanner.launch"/>-->
-  <include file="$(find robo_shield_pkg)/launch/laserScanner_right.launch"/>
-  <include file="$(find sick_safetyscanners)/launch/sick_safetyscanners.launch"/>
+ <include file="$(find robo_shield_pkg)/launch/laserScanner_right.launch"/>
+ <include file="$(find sick_safetyscanners)/launch/sick_safetyscanners.launch"/>
   
   
   

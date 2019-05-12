@@ -83,6 +83,7 @@ catkin_package(
     std_msgs
   DEPENDS
     Boost
+     ${OpenCV_INCLUDE_DIRS}
 )
 
 
@@ -165,9 +166,10 @@ add_library(${PROJECT_NAME}_core
  target_link_libraries(signal ${catkin_LIBRARIES})
  add_dependencies(signal ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
  
-  add_executable(signal_image src/signal_image.cpp)
-  target_link_libraries(signal_image ${catkin_LIBRARIES})
-  add_dependencies(signal_image ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+ add_executable(scan src/signal_new.cpp)
+target_link_libraries(scan ${catkin_LIBRARIES} ${OpenCV_LIBS})
+add_dependencies(scan ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+ 
 
 ## Declare cpp executables
 add_executable(${PROJECT_NAME}_node
