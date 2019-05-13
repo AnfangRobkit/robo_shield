@@ -67,7 +67,7 @@ void Listener::scanValues(const sick_safetyscanners::OutputPathsMsg::ConstPtr& o
     
 int main(int argc, char **argv)
 {
-  ros::init(argc, argv, "scan");
+  ros::init(argc, argv, "scan_image");
   ros::NodeHandle nh;
   ros::Rate loop_rate(30); 
   Listener listener;

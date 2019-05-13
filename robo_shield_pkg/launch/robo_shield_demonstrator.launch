@@ -33,8 +33,8 @@
  <include file="$(find robo_shield_pkg)/launch/laserScanner_right.launch"/>
  <include file="$(find sick_safetyscanners)/launch/sick_safetyscanners.launch"/>
   
-  <node name="scan" pkg="sick_safetyscanners" type="scan"/>
-  
+ <node name="scan" pkg="sick_safetyscanners" type="scan_image"/>
+
   
    <!-- adds human model -->
 
