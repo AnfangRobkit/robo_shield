@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8.3)
 project(robo_shield_pkg)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
-# add_compile_options(-std=c++11)
+add_compile_options(-std=c++11)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -13,6 +13,9 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   sensor_msgs
   trajectory_msgs
+  sick_safetyscanners
+     cv_bridge
+    image_transport
 )
 
 ## System dependencies are found with CMake's conventions
@@ -108,10 +111,10 @@ find_package(catkin REQUIRED COMPONENTS
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-#  INCLUDE_DIRS include
-#  LIBRARIES robo_shield_pkg
-#  CATKIN_DEPENDS control_msgs gazebo_msgs roscpp sensor_msgs trajectory_msgs
-#  DEPENDS system_lib
+  INCLUDE_DIRS include
+  LIBRARIES ${PROJECT_NAME}
+  CATKIN_DEPENDS sick_safetyscanners
+  # DEPENDS system_lib
 )
 
 ###########
@@ -121,14 +124,14 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
-# include
+  include/${PROJECT_NAME}
   ${catkin_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
-# add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/robo_shield_pkg.cpp
-# )
+add_library(${PROJECT_NAME}
+  #src/${PROJECT_NAME}/robo_shield_pkg.cpp
+)
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
@@ -151,9 +154,9 @@ include_directories(
 # add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-# target_link_libraries(${PROJECT_NAME}_node
-#   ${catkin_LIBRARIES}
-# )
+ target_link_libraries(${PROJECT_NAME}
+   ${catkin_LIBRARIES}
+ )
 
 #############
 ## Install ##
@@ -164,24 +167,24 @@ include_directories(
 
 ## Mark executable scripts (Python etc.) for installation
 ## in contrast to setup.py, you can choose the destination
-# install(PROGRAMS
+#  install(PROGRAMS
 #   scripts/my_python_script
-#   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-# )
+#    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+#  )
 
 ## Mark executables and/or libraries for installation
-# install(TARGETS ${PROJECT_NAME} ${PROJECT_NAME}_node
-#   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-#   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-#   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-# )
+#  install(TARGETS ${PROJECT_NAME}  
+# #   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+# #   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+# #   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+#  )
 
 ## Mark cpp header files for installation
-# install(DIRECTORY include/${PROJECT_NAME}/
-#   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+ install(DIRECTORY include/${PROJECT_NAME}/
+   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
 #   FILES_MATCHING PATTERN "*.h"
 #   PATTERN ".svn" EXCLUDE
-# )
+ )
 
 ## Mark other files for installation (e.g. launch and bag files, etc.)
 # install(FILES
@@ -203,10 +206,14 @@ include_directories(
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
 
-add_executable(move_arm src/node.cpp)
-target_link_libraries(move_arm ${catkin_LIBRARIES})
-add_dependencies(move_arm robo_shield_pkg_generate_messages_cpp)
+# add_executable(move_arm src/node.cpp)
+# target_link_libraries(move_arm ${catkin_LIBRARIES})
+# add_dependencies(move_arm robo_shield_pkg_generate_messages_cpp)
+# 
+# add_executable(move_human src/publisher_human.cpp)
+# target_link_libraries(move_human ${catkin_LIBRARIES})
+# add_dependencies(move_human robo_shield_pkg_generate_messages_cpp)
 
-add_executable(move_human src/publisher_human.cpp)
-target_link_libraries(move_human ${catkin_LIBRARIES})
-add_dependencies(move_human robo_shield_pkg_generate_messages_cpp)
+#   add_executable(scan_imag src/signal_new.cpp)
+#  target_link_libraries(scan_imag ${catkin_LIBRARIES} ${OpenCV_LIBS})
+#  add_dependencies(scan_imag ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})

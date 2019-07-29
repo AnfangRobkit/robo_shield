@@ -34,8 +34,9 @@
 
 
 #include "sick_safetyscanners/SickSafetyscannersRos.h"
+//#include"iostream"
 
-
+//using namespace std;
 namespace sick {
 
 SickSafetyscannersRos::SickSafetyscannersRos()
@@ -227,7 +228,6 @@ void SickSafetyscannersRos::receivedUDPPacket(const sick::datastructure::Data& d
     sick_safetyscanners::ExtendedLaserScanMsg extended_scan = createExtendedLaserScanMessage(data);
 
     m_extended_laser_scan_publisher.publish(extended_scan);
-
     sick_safetyscanners::OutputPathsMsg output_paths = createOutputPathsMessage(data);
     m_output_path_publisher.publish(output_paths);
   }

@@ -1,4 +1,0 @@
-geometry_msgs/Pose pose
-bool cartesian_time_parametrization
----
-bool success
