@@ -128,8 +128,8 @@ void emitTableLine(int x_pos) {
 }
 void publishCallback(const ros::TimerEvent&)
 {
-    ROS_INFO("Publishing");
-    int32_t x_pos = 0.5;
+    //ROS_INFO("Publishing");
+    int32_t x_pos = 0.1;
     emitTableLine(x_pos);
     emitLineStrip("dangerous", x_pos, 1,0,0,1,g_marker_pub,dangerous_state);
     emitLineStrip("warning", x_pos, 1,1,0.5,2,g_marker_pub, warning_state);
