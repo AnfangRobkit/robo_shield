@@ -16,7 +16,13 @@
     <arg name="limited" value="$(arg limited)"/>
   </include>
   
+    <include file="$(find ur10_moveit_config)/launch/ur10_moveit_planning_execution.launch">
+    <arg name="sim" value="true"/>
+  </include>
 
+    <include file="$(find ur10_moveit_config)/launch/moveit_rviz.launch">
+    <arg name="config" value="true"/>
+  </include>
 
   <!-- push robot_description to factory and spawn robot in gazebo -->
   <node name="spawn_gazebo_model" pkg="gazebo_ros" type="spawn_model" args="-urdf -param robot_description -model robot -x -0.25 -z 0.92" respawn="false" output="screen" />
@@ -26,16 +32,21 @@
   <rosparam file="$(find ur_gazebo)/controller/arm_controller_ur10.yaml" command="load"/>
   <node name="arm_controller_spawner" pkg="controller_manager" type="controller_manager" args="spawn arm_controller" respawn="false" output="screen"/>
     
-  <!--  <include file="$(find robo_shield_pkg)/launch/human.launch"/> 
-  <node name="move_human" pkg="robo_shield_pkg" type="move_human"/>-->
-  <node name="move_arm" pkg="robo_shield_pkg" type="move_arm"/>
- <!--  <include file="$(find robo_shield_pkg)/launch/laserScanner.launch"/>-->
-  <include file="$(find robo_shield_pkg)/launch/laserScanner_right.launch"/>
+    <!-- load other controllers -->
+  <node name="ros_control_controller_manager" pkg="controller_manager" type="controller_manager" respawn="false" output="screen" args="load joint_group_position_controller" />
+
+   <!--  <include file="$(find robo_shield_pkg)/launch/human.launch"/> 
+  <node name="move_human" pkg="robo_shield_pkg" type="move_human"/>
+  -->
+  <!--<include file="$(find robo_shield_pkg)/launch/laserScanner.launch"/>-->
+<!-- <include file="$(find robo_shield_pkg)/launch/laserScanner_right.launch"/>
+ <include file="$(find sick_safetyscanners)/launch/sick_safetyscanners.launch"/>-->
+ <include file="$(find robo_shield_pkg)/launch/laserScanner_right.launch"/>
   <node pkg="tf" type="static_transform_publisher" name="hokuyo_broadcaster" args="0.425 -1.05 0.1 -0.785398 0 3.1415926 base_link hokuyo 100" />
-  <!--static transforms to let ros tf know where the laser is  -->
-  <!-- <include file="$(find sick_safetyscanners)/launch/sick_safetyscanners.launch"/>-->
   
- <node name="scan" pkg="sick_safetyscanners" type="scan_image"/>
+<!-- <node name="scan" pkg="sick_safetyscanners" type="scan_image"/>-->
+   <node name="marker_array" pkg="robo_shield_pkg" type="marker_array"/>
+   <node name="move_arm" pkg="robo_shield_pkg" type="move_arm"/>
 
   
    <!-- adds human model -->
@@ -50,8 +61,6 @@
   </node>
   
   -->
-
-
 
 </launch>
 
