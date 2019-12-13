@@ -7,24 +7,22 @@
 #include "sensor_msgs/LaserScan.h"
 
 
-
 ros::Publisher g_marker_pub;
 double zone_radius = 1.8;
 double corner_x = 0.425;
 double corner_y = -1.05;
-float dangerous_state=0.1, safe_state=0.1, warning_state=0.1;
+float dangerous_state = 0.1, safe_state = 0.1, warning_state = 0.1;
 
 int Samples = 720;
 #define PI 3.1415926
 
 std::vector<float> old_range = std::vector<float>(Samples, 0);
 std::vector<float> range = std::vector<float>(Samples, 0);
-std::vector<float> diff = std::vector<float>(Samples,0);
+std::vector<float> diff = std::vector<float>(Samples, 0);
 
 
 void emitLineStrip(const std::string type_name, int32_t x_pos, float r, float g, float b, int k,
-        ros::Publisher& pub, float a=1.0,std::string frame_id = std::string("/world"))
-{
+                   ros::Publisher &pub, float a = 1.0, std::string frame_id = std::string("/world")) {
     visualization_msgs::Marker marker;
     marker.header.frame_id = frame_id;
     ros::Time ros_time = ros::Time::now();
@@ -48,11 +46,10 @@ void emitLineStrip(const std::string type_name, int32_t x_pos, float r, float g,
     marker.color.b = b;
     marker.frame_locked = false;
 
-    double points_list_x[4] = {corner_x+ k*zone_radius, corner_x+k*zone_radius, corner_x, -corner_x};
-    double points_list_y[4] = {-corner_y, corner_y, corner_y-k*zone_radius, corner_y-k*zone_radius};
+    double points_list_x[4] = {corner_x + k * zone_radius, corner_x + k * zone_radius, corner_x, -corner_x};
+    double points_list_y[4] = {-corner_y, corner_y, corner_y - k * zone_radius, corner_y - k * zone_radius};
 
-    for (int i = 0; i < 2; ++i)
-    {
+    for (int i = 0; i < 2; ++i) {
         geometry_msgs::Point p;
         p.x = points_list_x[i];
         p.y = points_list_y[i];
@@ -60,17 +57,13 @@ void emitLineStrip(const std::string type_name, int32_t x_pos, float r, float g,
         marker.points.push_back(p);
     }
 
-    for(double temp_y = points_list_y[1]-0.1; temp_y >= points_list_y[2]; )
-    {
+    for (double temp_y = points_list_y[1] - 0.1; temp_y >= points_list_y[2];) {
         geometry_msgs::Point p;
         p.y = temp_y;
-        double temp_x = sqrt(k*k*zone_radius*zone_radius - (temp_y-corner_y)*(temp_y-corner_y)) + corner_x;
-        if(!isnan(temp_x))
-        {
+        double temp_x = sqrt(k * k * zone_radius * zone_radius - (temp_y - corner_y) * (temp_y - corner_y)) + corner_x;
+        if (!isnan(temp_x)) {
             p.x = temp_x;
-        }
-        else
-        {
+        } else {
             ROS_INFO("NaN");
         }
         p.z = 0;
@@ -78,8 +71,7 @@ void emitLineStrip(const std::string type_name, int32_t x_pos, float r, float g,
         temp_y -= 0.1;
     }
 
-    for (int i = 2; i < 4; ++i)
-    {
+    for (int i = 2; i < 4; ++i) {
         geometry_msgs::Point p;
         p.x = points_list_x[i];
         p.y = points_list_y[i];
@@ -126,53 +118,48 @@ void emitTableLine(int x_pos) {
 
     g_marker_pub.publish(marker);
 }
-void publishCallback(const ros::TimerEvent&)
-{
+
+void publishCallback(const ros::TimerEvent &) {
     //ROS_INFO("Publishing");
     int32_t x_pos = 0.1;
     emitTableLine(x_pos);
-    emitLineStrip("dangerous", x_pos, 1,0,0,1,g_marker_pub,dangerous_state);
-    emitLineStrip("warning", x_pos, 1,1,0.5,2,g_marker_pub, warning_state);
-    emitLineStrip("safety", x_pos, 0,1,0,3,g_marker_pub, safe_state);
+    emitLineStrip("dangerous", x_pos, 1, 0, 0, 1, g_marker_pub, dangerous_state);
+    emitLineStrip("warning", x_pos, 1, 1, 0.5, 2, g_marker_pub, warning_state);
+    emitLineStrip("safety", x_pos, 0, 1, 0, 3, g_marker_pub, safe_state);
 }
 
-void scanValues(const sensor_msgs::LaserScan::ConstPtr& scan)
-{
+void scanValues(const sensor_msgs::LaserScan::ConstPtr &scan) {
     /*The Laser has 720 Samples */
     range = scan->ranges;
-    double angle,x,y;
+    double angle, x, y;
     float safe_d = 4;
     float warn_d = 2;
     float distance_now;
 
-    for(int i = 1; i<=Samples;i++)
-    {
+    for (int i = 1; i <= Samples; i++) {
         diff[i] = range[i] - old_range[i];
-        if ( abs(diff[i]) > 0.1 && abs(diff[i]) < 100 ) {
+        if (abs(diff[i]) > 0.1 && abs(diff[i]) < 100) {
             /* When detect object, then calculate the distance and the judement*/
             /* angle = i * 270 / Samples * PI / 180; */
-            angle =1.5*i*PI/Samples;
+            angle = 1.5 * i * PI / Samples;
 
-            x= range[i] * cos(angle+PI/4) + corner_x;
-            y= range[i] * sin(angle+PI/4) +corner_y;
+            x = range[i] * cos(angle + PI / 4) + corner_x;
+            y = range[i] * sin(angle + PI / 4) + corner_y;
 
-            distance_now = sqrt(x*x+y*y);
+            distance_now = sqrt(x * x + y * y);
 
-            if(distance_now>safe_d) {
-                dangerous_state=0.1;
-                warning_state=0.1;
-                safe_state=1.0;
-            }
-            else if (distance_now>(warn_d)) {
-                dangerous_state=0.1;
-                warning_state=1.0;
-                safe_state=0.1;
-            }
-            else
-            {
-                dangerous_state=1.0;
-                warning_state=0.1;
-                safe_state=0.1;
+            if (distance_now > safe_d) {
+                dangerous_state = 0.1;
+                warning_state = 0.1;
+                safe_state = 1.0;
+            } else if (distance_now > (warn_d)) {
+                dangerous_state = 0.1;
+                warning_state = 1.0;
+                safe_state = 0.1;
+            } else {
+                dangerous_state = 1.0;
+                warning_state = 0.1;
+                safe_state = 0.1;
             }
         }
     }
@@ -180,13 +167,11 @@ void scanValues(const sensor_msgs::LaserScan::ConstPtr& scan)
 }
 
 
-
-int main(int argc, char** argv)
-{
+int main(int argc, char **argv) {
     ros::init(argc, argv, "marker");
     ros::NodeHandle n;
 
-    g_marker_pub = n.advertise<visualization_msgs::Marker> ("visualization_marker", 0);
+    g_marker_pub = n.advertise<visualization_msgs::Marker>("visualization_marker", 0);
     ros::Timer publish_timer = n.createTimer(ros::Duration(1), publishCallback);
 
     ros::Subscriber sub;

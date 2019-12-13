@@ -8,20 +8,21 @@ project(robo_shield_pkg)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  control_msgs
-  gazebo_msgs
-  roscpp
-  sensor_msgs
-  trajectory_msgs
- cv_bridge
-    image_transport
- tf
-)
+        control_msgs
+        gazebo_msgs
+        roscpp
+        sensor_msgs
+        trajectory_msgs
+        cv_bridge
+        image_transport
+        tf
+        )
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
 
 
+## package, follow these steps:
 ## Uncomment this if the package has a setup.py. This macro ensures
 ## modules and global scripts declared therein get installed
 ## See http://ros.org/doc/api/catkin/html/user_guide/setup_dot_py.html
@@ -32,7 +33,6 @@ find_package(catkin REQUIRED COMPONENTS
 ################################################
 
 ## To declare and build messages, services or actions from within this
-## package, follow these steps:
 ## * Let MSG_DEP_SET be the set of packages whose message types you use in
 ##   your messages/services/actions (e.g. std_msgs, actionlib_msgs, ...).
 ## * In the file package.xml:
@@ -52,11 +52,11 @@ find_package(catkin REQUIRED COMPONENTS
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
 ## Generate messages in the 'msg' folder
- add_message_files(
-   FILES
-   Num.msg
+add_message_files(
+        FILES
+        Num.msg
 
- )
+)
 
 ## Generate services in the 'srv' folder
 # add_service_files(
@@ -73,13 +73,13 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate added messages and services with any dependencies listed here
- generate_messages(
-   DEPENDENCIES
-   control_msgs
-   gazebo_msgs
-   sensor_msgs
-   trajectory_msgs
- )
+generate_messages(
+        DEPENDENCIES
+        control_msgs
+        gazebo_msgs
+        sensor_msgs
+        trajectory_msgs
+)
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -111,10 +111,10 @@ find_package(catkin REQUIRED COMPONENTS
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-#  INCLUDE_DIRS include
-#  LIBRARIES robo_shield_pkg
-#  CATKIN_DEPENDS control_msgs gazebo_msgs roscpp sensor_msgs trajectory_msgs
-#  DEPENDS system_lib
+        #  INCLUDE_DIRS include
+        #  LIBRARIES robo_shield_pkg
+        #  CATKIN_DEPENDS control_msgs gazebo_msgs roscpp sensor_msgs trajectory_msgs
+        #  DEPENDS system_lib
 )
 
 ###########
@@ -124,8 +124,8 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
-# include
-  ${catkin_INCLUDE_DIRS}
+        # include
+        ${catkin_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
@@ -213,10 +213,6 @@ add_dependencies(move_arm robo_shield_pkg_generate_messages_cpp)
 add_executable(move_human src/publisher_human.cpp)
 target_link_libraries(move_human ${catkin_LIBRARIES})
 add_dependencies(move_human robo_shield_pkg_generate_messages_cpp)
-
-# add_executable(add_marker src/basic_marker.cpp)
-# target_link_libraries(add_marker ${catkin_LIBRARIES})
-# add_dependencies(add_marker robo_shield_pkg_generate_messages_cpp)
 
 add_executable(marker_array src/marker_array.cpp)
 target_link_libraries(marker_array ${catkin_LIBRARIES})

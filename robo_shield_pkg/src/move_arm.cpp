@@ -1,42 +1,39 @@
- 
+
 #include "move_arm.h"
 
 
-int main(int argc, char **argv)
-{
- 
-  ros::init(argc, argv, "ur_sim");
-  ros::NodeHandle nh;
-  ros::Publisher JointControlpub = nh.advertise<trajectory_msgs::JointTrajectory>("arm_controller/command", 1);
-  ros::Subscriber JointStateSubscriber = nh.subscribe<sensor_msgs::JointState>("/joint_states", 100, JointStateCallBack);
-  
-  trajectory_msgs::JointTrajectory RealRobotState;
+int main(int argc, char **argv) {
 
-  RealRobotState.points.resize(1);
-  
-  RealRobotState.points[0].positions.resize(6);
+    ros::init(argc, argv, "ur_sim");
+    ros::NodeHandle nh;
+    ros::Publisher JointControlpub = nh.advertise<trajectory_msgs::JointTrajectory>("arm_controller/command", 1);
+    ros::Subscriber JointStateSubscriber = nh.subscribe<sensor_msgs::JointState>("/joint_states", 100,
+                                                                                 JointStateCallBack);
 
-  while (ros::ok())
-  {    
-    while(hasNewMsg)
-    {
-    RealRobotState.header.stamp=ros::Time::now();
-    RealRobotState.joint_names = urJointStates.name;
-    RealRobotState.points[0].time_from_start = ros::Duration(0.75);
-    RealRobotState.points[0].positions = urJointStates.position;
-    
-    JointControlpub.publish(RealRobotState);  
-    hasNewMsg = false;
+    trajectory_msgs::JointTrajectory RealRobotState;
 
+    RealRobotState.points.resize(1);
+
+    RealRobotState.points[0].positions.resize(6);
+
+    while (ros::ok()) {
+        while (hasNewMsg) {
+            RealRobotState.header.stamp = ros::Time::now();
+            RealRobotState.joint_names = urJointStates.name;
+            RealRobotState.points[0].time_from_start = ros::Duration(0.75);
+            RealRobotState.points[0].positions = urJointStates.position;
+
+            JointControlpub.publish(RealRobotState);
+            hasNewMsg = false;
+
+        }
+        ros::spinOnce();
     }
-    ros::spinOnce();
-  }
 
-  return 0;
+    return 0;
 }
 
-void JointStateCallBack(const sensor_msgs::JointState::ConstPtr& msg)
-{
+void JointStateCallBack(const sensor_msgs::JointState::ConstPtr &msg) {
     urJointStates = *msg;
     hasNewMsg = true;
 }

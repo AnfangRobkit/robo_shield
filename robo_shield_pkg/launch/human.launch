@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
-   
 
-  
-  <param name="human_description" command="$(find xacro)/xacro.py '$(find robo_shield_pkg)/urdf/human.xacro'"/> 
-  
-  <node name="human_spawn" pkg="gazebo_ros" type="spawn_model" output="screen"
-   args="-urdf -param human_description -model human -x 3 -y 3 -z 3  " />
+
+    <param name="human_description" command="$(find xacro)/xacro.py '$(find robo_shield_pkg)/urdf/human.xacro'"/>
+
+    <node name="human_spawn" pkg="gazebo_ros" type="spawn_model" output="screen"
+          args="-urdf -param human_description -model human -x 3 -y 3 -z 3  "/>
 
 </launch>
