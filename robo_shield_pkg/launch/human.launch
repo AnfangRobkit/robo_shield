@@ -7,4 +7,6 @@
     <node name="human_spawn" pkg="gazebo_ros" type="spawn_model" output="screen"
           args="-urdf -param human_description -model human -x 3 -y 3 -z 3  "/>
 
+    <node name="move_human" pkg="robo_shield_pkg" type="move_human"/>
+
 </launch>
