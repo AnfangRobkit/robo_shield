@@ -55,6 +55,7 @@ source ~/catkin_ws/devel/setup.bash
 ```
 Or you could just add it to your .bashrc file.
 
+For Gazebo model staff, please remember to copy the models in **src/robo_shield_pkg/models**to the root Gazebo folder.
 ### How to run
 
 #### Simulated Environment (without connection to the hardware) 
@@ -74,69 +75,31 @@ picture blow:
 
 #### Pure Visualization (WIth Connection to the hardware)
 
-Before starting the program, please check and modify the sensor ip in the **./sick_safetyscanners/launch/sick_safetyscanners.launch**
+Before starting the program, please check and modify the sensor ip in the **/sick_safetyscanners/launch/sick_safetyscanners.launch**
 and change the host-ip (where do you start the program), which ensures you to have the connection with the laser:
 ```shell script
   <arg name="sensor_ip" default="141.3.80.xxx" />
   <arg name="host_ip" default="141.3.81.xxx" />
 ```
+You could use
+```shell script
+ping 141.3.80.xxx
+```
+to check whether the connection with the laser is established. For the connection with the robot hardware, please 
+contact Xi.
+
+After all connections are established, you can run,
+```shell script
+roslaunch robo_shield_pkg robo_shield_demonstrator.launch
+```
+If you run
+```shell script
+rqt_image_view
+```
+You could get something like the picture blow, the color indicates the laser scanner's output.
+![](utils/image/visual_gazebo_with_rqt_image)
 
 
-
-sda
-
-
-
-sda
-
-
-
-sd
-s
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-s
-
-
-
-
-
-
-
-
-s
-ss
+## Main folder & files instruction
+### laser_scanner Folder
+This ROS package folder contains the 

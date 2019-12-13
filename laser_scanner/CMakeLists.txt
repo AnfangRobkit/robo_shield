@@ -11,7 +11,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
-  sensor_msgs 
+  sensor_msgs
   tf
   cv_bridge
   image_transport

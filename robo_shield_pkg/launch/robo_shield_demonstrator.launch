@@ -28,11 +28,6 @@
           respawn="false" output="screen"/>
 
     <node name="move_arm" pkg="robo_shield_pkg" type="move_arm"/>
-    <!--  <include file="$(find robo_shield_pkg)/launch/laserScanner.launch"/>-->
-    <!--    <include file="$(find robo_shield_pkg)/launch/laserScanner_right.launch"/>-->
-    <!--    <node pkg="tf" type="static_transform_publisher" name="hokuyo_broadcaster"-->
-    <!--          args="0.425 -1.05 0.1 -0.785398 0 3.1415926 base_link hokuyo 100"/>-->
-    <!--static transforms to let ros tf know where the laser is  -->
 
     <include file="$(find sick_safetyscanners)/launch/sick_safetyscanners.launch"/>
 
