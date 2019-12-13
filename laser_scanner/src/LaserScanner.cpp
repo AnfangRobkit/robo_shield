@@ -13,7 +13,11 @@
 #include <image_transport/image_transport.h>
 #include <sensor_msgs/image_encodings.h>
 
-
+/**
+ * @brief This node receives the laser output from the topic  /mybot/laser/scan_right
+ * and after calculate the distance between robot and human to give the signal output in image
+ * Red indicates dangerous, Yello indicates critical, Green indicates Safety
+ **/
 using namespace std;
 using namespace cv;
 namespace enc = sensor_msgs::image_encodings;
@@ -42,35 +46,27 @@ void Listener::scanValues(const sensor_msgs::LaserScan::ConstPtr &scan) {
     float warn_d = 1.5;
     float distance_now;
     flag = 0;
-    //cout<<range[100]<<endl
 
     for (int i = 1; i <= Samples; i++) {
 
         if (abs(range[i]) < 100 && abs(range[i]) > 0.1) {
             distance_now = range[i];
-
-
             if (distance_now < (warn_d)) {
-//                 ROS_INFO("Dangerous!");
                 cv::circle(image, cv::Point(512, 512), 100, CV_RGB(255, 0, 0), CV_FILLED, 8, 0);
                 flag = 2;
-
                 break;
             } else if (distance_now > warn_d && distance_now < safe_d) {
 
                 cv::circle(image, cv::Point(512, 512), 100, CV_RGB(255, 255, 0), CV_FILLED, 8, 0);
-//                 ROS_INFO("Critical!");      
                 flag = 1;
                 break;
             } else if (distance_now > safe_d) {
                 cv::circle(image, cv::Point(512, 512), 100, CV_RGB(0, 255, 0), CV_FILLED, 8, 0);
-//                 ROS_INFO("Critical!");      
                 flag = 1;
             }
         }
     }
     image_ = image;
-
 }
 
 
@@ -104,12 +100,8 @@ int main(int argc, char **argv) {
             ros::spinOnce();
             loop_rate.sleep();
         }
-        //cv::imshow("image_window", image_new);
-
         ros::spinOnce();
     }
-//         cv::destroyWindow("image_window"); 
-
     return 0;
 }
 

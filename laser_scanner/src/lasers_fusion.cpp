@@ -36,6 +36,9 @@ void scanValues(const sensor_msgs::LaserScan::ConstPtr &scan, const sensor_msgs:
     for (int i = 1; i <= Samples; i++) {
         diff[i] = range[i] - old_range[i];
         diff2[i] = range2[i] - old_range2[i];
+        // diff here is used for the filter purpose:
+        // >0.1: we only cares about the dynamic object whose movement is large enough to be detected. also it will filter
+        // out the wrong warnings due to the instability of the sensor detection results.
         if (abs(diff[i]) > 0.1 && abs(diff[i]) < 100) {
             /* When detect object, then calculate the distance and the judement*/
             /* angle = i * 270 / Samples * PI / 180; */
@@ -50,7 +53,6 @@ void scanValues(const sensor_msgs::LaserScan::ConstPtr &scan, const sensor_msgs:
             } else if (distance_now < (warn_d)) {
                 flag_left = 2;
             }
-
         }
         if (abs(diff2[i]) > 0.1 && abs(diff2[i]) < 100) {
 
@@ -62,10 +64,8 @@ void scanValues(const sensor_msgs::LaserScan::ConstPtr &scan, const sensor_msgs:
             distance_now2 = sqrt(x2 * x2 + y2 * y2);
             if (distance_now2 > warn_d && distance_now2 < safe_d) {
                 flag_right = 1;
-
             } else if (distance_now2 < (warn_d)) {
                 flag_right = 2;
-
             }
         }
     }
@@ -75,8 +75,6 @@ void scanValues(const sensor_msgs::LaserScan::ConstPtr &scan, const sensor_msgs:
     } else if (flag_left == 1 || flag_right == 1) {
         ROS_INFO("Critical!");
     }
-
-
     old_range = range;
     old_range2 = range2;
 }
@@ -84,7 +82,9 @@ void scanValues(const sensor_msgs::LaserScan::ConstPtr &scan, const sensor_msgs:
 int main(int argc, char **argv) {
     ros::init(argc, argv, "scanner");
     ros::NodeHandle n;
-
+    /**
+     * @brief here we used message_filters to synchronize the two laser outputs
+     **/
     message_filters::Subscriber <sensor_msgs::LaserScan> leftlaser_sub(n, "/mybot/laser/scan", 1000);
     message_filters::Subscriber <sensor_msgs::LaserScan> rightlaser_sub(n, "/mybot/laser/scan_right", 1000);
     TimeSynchronizer <sensor_msgs::LaserScan, sensor_msgs::LaserScan> sync(leftlaser_sub, rightlaser_sub, 1000);

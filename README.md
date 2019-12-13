@@ -97,9 +97,11 @@ If you run
 rqt_image_view
 ```
 You could get something like the picture blow, the color indicates the laser scanner's output.
-![](utils/image/visual_gazebo_with_rqt_image)
+![](utils/image/visual_gazebo_with_rqt_image.jpg)
 
 
 ## Main folder & files instruction
 ### laser_scanner Folder
-This ROS package folder contains the 
+This ROS package folder contains the laser signal processing, which based on the current raw laser detection results to give
+the judgement of the working situation. This is used in the early stage, mainly used for the simulated laser, not used later any
+more. 
