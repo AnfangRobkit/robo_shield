@@ -8,7 +8,10 @@
 #include <sstream>
 #include <math.h>
 
-
+/**
+ * @brief header file for the communication with the robot hardware
+ * @author Xi HUANG
+ * **/
 void JointStateCallBack(const sensor_msgs::JointState::ConstPtr& msg);
 sensor_msgs::JointState urJointStates;
 bool hasNewMsg=true;

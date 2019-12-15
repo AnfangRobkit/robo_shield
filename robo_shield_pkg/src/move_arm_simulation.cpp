@@ -6,7 +6,10 @@
 #include <sstream>
 #include <math.h>
 
-
+/**
+ * @brief this file is uesd to generate the trajectory of the robot in gazebo
+ * environment, only used for visualization
+ **/
 int main(int argc, char **argv) {
 
     ros::init(argc, argv, "pub");

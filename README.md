@@ -101,11 +101,21 @@ You could get something like the picture blow, the color indicates the laser sca
 
 
 ## Main folder & files instruction
+
+### robo_shield_pkg Folder
+
+The main ros folder, where the Gazebo simulation environment and RVIZ staff are implemented. It also contains the table
+model that is needed in Gazebo simulation.
+
+### sick_safetyscanners Folder
+This package is old version from SICK GitHub, but would be more stable than the newest version. It is needed 
+when the connection between PC and SICK hardware is to establish. Please modify the IP Address in the launch file
+to make the sensor able to communicate with the host PC.
+
+### universal_robot Folder
+Necessary files to control and visualize the UR robotics' motion. 
+
 ### laser_scanner Folder
 This ROS package folder contains the laser signal processing, which based on the current raw laser detection results to give
 the judgement of the working situation. This is used in the early stage, mainly used for the simulated laser, not used later any
 more. 
-
-### robo_shield_pkg Folder
-
-The main ros folder, where the Gazebo simulation environment and RVIZ staff are implemented.

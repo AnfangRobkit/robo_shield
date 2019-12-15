@@ -206,14 +206,18 @@ include_directories(
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
 
-add_executable(move_arm src/node.cpp)
+add_executable(move_arm src/move_arm_simulation.cpp)
 target_link_libraries(move_arm ${catkin_LIBRARIES})
 add_dependencies(move_arm robo_shield_pkg_generate_messages_cpp)
 
-add_executable(move_human src/publisher_human.cpp)
+add_executable(move_human src/move_human.cpp)
 target_link_libraries(move_human ${catkin_LIBRARIES})
 add_dependencies(move_human robo_shield_pkg_generate_messages_cpp)
 
 add_executable(marker_array src/marker_array.cpp)
 target_link_libraries(marker_array ${catkin_LIBRARIES})
 add_dependencies(marker_array robo_shield_pkg_generate_messages_cpp)
+
+add_executable(arm_command src/move_arm_realworld.cpp)
+target_link_libraries(arm_command ${catkin_LIBRARIES})
+add_dependencies(arm_command robo_shield_pkg_generate_messages_cpp)

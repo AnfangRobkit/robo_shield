@@ -7,7 +7,10 @@
 #include <stdlib.h>
 
 #define freq 100
-
+/**
+ * @brief this file is used to generate random human's motion in the Gazebo
+ * Simulation environment
+ * */
 
 class Path {
 

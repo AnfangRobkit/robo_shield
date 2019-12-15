@@ -1,6 +1,10 @@
 
-#include "move_arm.h"
+#include <robo_shield_pkg/move_arm.h>
 
+/**
+ *@brief this file used to remap the motion of the real-world hardware to the
+ * gazebo environment
+ * */
 
 int main(int argc, char **argv) {
 

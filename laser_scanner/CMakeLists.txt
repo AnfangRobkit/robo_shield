@@ -8,14 +8,14 @@ project(laser_scanner)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  roscpp
-  rospy
-  std_msgs
-  sensor_msgs
-  tf
-  cv_bridge
-  image_transport
-)
+        roscpp
+        rospy
+        std_msgs
+        sensor_msgs
+        tf
+        cv_bridge
+        image_transport
+        )
 find_package(OpenCV REQUIRED)
 find_package(image_transport REQUIRED)
 
@@ -109,10 +109,10 @@ find_package(image_transport REQUIRED)
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-#  INCLUDE_DIRS include
-#  LIBRARIES laser_scanner
-#  CATKIN_DEPENDS roscpp rospy std_msgs
-#  DEPENDS system_lib
+        #  INCLUDE_DIRS include
+        #  LIBRARIES laser_scanner
+        #  CATKIN_DEPENDS roscpp rospy std_msgs
+        #  DEPENDS system_lib
 )
 
 ###########
@@ -122,10 +122,10 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
-# include
-  ${catkin_INCLUDE_DIRS}
-  include/
-  ${OpenCV_INCLUDE_DIRS}
+        # include
+        ${catkin_INCLUDE_DIRS}
+        include/
+        ${OpenCV_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
@@ -141,21 +141,13 @@ include_directories(
 ## Declare a C++
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-add_executable(scanner src/LaserScanner.cpp)
+add_executable(scanner src/laser_scanner.cpp)
 target_link_libraries(scanner ${catkin_LIBRARIES} ${OpenCV_LIBS})
 add_dependencies(scanner ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 add_executable(scanners src/lasers_fusion.cpp)
 target_link_libraries(scanners ${catkin_LIBRARIES})
 add_dependencies(scanners ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-
-add_executable(static src/static_laser.cpp)
-target_link_libraries(static ${catkin_LIBRARIES})
-add_dependencies(static ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-
-#  add_executable(signal src/signal.cpp)
-#  target_link_libraries(signal ${catkin_LIBRARIES})
-#  add_dependencies(signal ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the

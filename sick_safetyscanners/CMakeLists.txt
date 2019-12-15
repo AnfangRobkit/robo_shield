@@ -162,11 +162,7 @@ add_library(${PROJECT_NAME}_core
 )
 
 
- add_executable(signal src/signal.cpp)
- target_link_libraries(signal ${catkin_LIBRARIES})
- add_dependencies(signal ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
- 
- add_executable(scan_image src/signal_new.cpp)
+add_executable(scan_image src/signal_rqt_image.cpp)
 target_link_libraries(scan_image ${catkin_LIBRARIES} ${OpenCV_LIBS})
 add_dependencies(scan_image ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
  

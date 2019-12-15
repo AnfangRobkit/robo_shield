@@ -177,8 +177,6 @@ int main(int argc, char **argv) {
     ros::Subscriber sub;
     sub = n.subscribe("/mybot/laser/scan_right", 50, scanValues);
 
-//    tf::TransformBroadcaster tf_broadcaster;
-
     ros::Duration(0.1).sleep();
 
     ros::spin();

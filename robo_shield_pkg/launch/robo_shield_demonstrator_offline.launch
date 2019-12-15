@@ -38,27 +38,16 @@
     <node name="ros_control_controller_manager" pkg="controller_manager" type="controller_manager" respawn="false"
           output="screen" args="load joint_group_position_controller"/>
 
-    <!--<include file="$(find robo_shield_pkg)/launch/laserScanner.launch"/>-->
-    <!-- <include file="$(find robo_shield_pkg)/launch/laserScanner_right.launch"/>
+    <!--<include file="$(find robo_shield_pkg)/launch/laser_scanner.launch"/>-->
+    <!-- <include file="$(find robo_shield_pkg)/launch/laser_scanner_right.launch"/>
      <include file="$(find sick_safetyscanners)/launch/sick_safetyscanners.launch"/>-->
-    <include file="$(find robo_shield_pkg)/launch/laserScanner_right.launch"/>
+    <include file="laser_scanner_right.launch"/>
     <node pkg="tf" type="static_transform_publisher" name="hokuyo_broadcaster"
           args="0.425 -1.05 0.1 -0.785398 0 3.1415926 base_link hokuyo 100"/>
 
     <!-- <node name="scan" pkg="sick_safetyscanners" type="scan_image"/>-->
     <node name="marker_array" pkg="robo_shield_pkg" type="marker_array"/>
     <node name="move_arm" pkg="robo_shield_pkg" type="move_arm"/>
-
-
-    <!-- adds human model -->
-
-    <!--
-      <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-file $(find demo_abb)/urdf/myrobot.urdf -urdf -x 2 -y 0 -model human_urdf" />
-      convert joint states to TF transforms for rviz, etc
-      <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
-      output="screen">
-      </node>
-      -->
 
 </launch>
 
