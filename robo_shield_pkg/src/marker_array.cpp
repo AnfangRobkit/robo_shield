@@ -6,6 +6,10 @@
 #include "std_msgs/String.h"
 #include "sensor_msgs/LaserScan.h"
 
+/**
+ *@brief this files generate several line strips to represent the dangerous zone and brighten the
+ * corresponding line when the human is detected inside.
+ **/
 
 ros::Publisher g_marker_pub;
 double zone_radius = 1.8;

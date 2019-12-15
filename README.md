@@ -110,7 +110,7 @@ model that is needed in Gazebo simulation.
 ### sick_safetyscanners Folder
 This package is old version from SICK GitHub, but would be more stable than the newest version. It is needed 
 when the connection between PC and SICK hardware is to establish. Please modify the IP Address in the launch file
-to make the sensor able to communicate with the host PC.
+to make the sensor able to communicate with the host PC. Some modifications based on use-case could be done.
 
 ### universal_robot Folder
 Necessary files to control and visualize the UR robotics' motion. 
